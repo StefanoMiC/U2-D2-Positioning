@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* position ABSOLUTE ci serve per muovere un elemento relativamente ad un riferimento o contenitore in posizione RELATIVE (o diversa da STATIC) 
+        es. aiuta a posizionare un elemento sopra un altro, ad agganciarlo rispetto ai confini di un genitore (quando le dimensioni del genitore cambiano, lui segue dinamicamente)
+        
+        - l'elemento viene rimosso dal flusso normale, 
+        - gli altri non sono consapevoli della sua esistenza. 
+        - non si lascia dietro nessuno spazio vuoto (è su un livello superiore al resto degli elementi) 
+        */
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-inline: auto;
+            border: 1px solid black;
+            min-height: 400px;
+            margin-bottom: 2rem;
+        }
+
+        .container:nth-of-type(2) {
+            padding: 2rem;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color: coral;
+            display: inline-block;
+        }
+
+        .box-2 {
+            background-color: aquamarine;
+            /* position absolute è applicato tramite classe apposita */
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .box-2 span {
+            /*questo è il figlio del box-2 color aqua, essendo che il box-2 è in posizione !== da static fungerà 
+            da punto di riferimento per le coordinate che useremo su questo span */
+            position: absolute;
+            right: 0;
+            bottom: 0;
+
+            width: 10px;
+            height: 10px;
+            /* display: inline-block; con absolute le dimensioni allo span possiamo darle senza un inline block*/
+            background: red;
+            border-radius: 50%;
+        }
+
+        .box-3 {
+            background-color: palevioletred;
+        }
+
+        .position-relative {
+            position: relative;
+            /* per posizionare un figlio in absolute nella maggior parte dei casi bisogna avere una posizione !== da static sul genitore
+            questo lo renderà il nuovo punto di riferimento per il figlio e le sue coordinate */
+        }
+
+        .position-absolute {
+            position: absolute;
+        }
+
+        .card {
+            display: inline-block;
+            width: 33.333%;
+            margin-right: -4px;
+            border-radius: 6px;
+            border: 1px solid #c2c2c2;
+            box-shadow: 0 3px 10px rgb(0 0 0 / 10%);
+            overflow: hidden;
+
+
+        }
+
+        .card img {
+            display: block;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .card .image-wrapper {
+            position: relative;
+        }
+
+        .badge {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            background-color: crimson;
+            color: white;
+            padding: 0.25rem;
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        /* dal momento che gli absolute sono rimosssi dal flusso della pagina, potrebbero andare in collisione 
+        con altri elementi che non hanno coscienza della loro esistenza o posizione 
+        possiamo gestire questi casi particolari resettando il comportamento ad una particolare dimensione del viewport (poco prima che si presenti il problema)
+        */
+        @media screen and (max-width: 580px) {
+            .box-2 {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container position-relative">
+        <h2>sono il genitore in position-relative</h2>
+
+        <div class="box">sono il figlio</div>
+        <div class="box box-2 position-absolute">sono in position-absolute <span></span></div>
+        <div class="box box-3">sono il figlio3</div>
+    </div>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="image-wrapper">
+                <img src="https://plus.unsplash.com/premium_photo-1668472274328-cd239ae3586f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    alt="" width="100%" height="150px" style="object-fit: cover;">
+                <span class="badge">HOT SALE!</span>
+            </div>
+            <div class="card-body">
+                <h3>titolo</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam quis nobis adipisci nisi dolores
+                    sapiente
+                    eaque quaerat perspiciatis hic autem eum doloremque nemo, at enim. Accusantium alias soluta dolorum
+                    esse!</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="image-wrapper">
+                <img src="https://plus.unsplash.com/premium_photo-1668472274328-cd239ae3586f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    alt="" width="100%" height="150px" style="object-fit: cover;">
+                <span class="badge">HOT SALE!</span>
+            </div>
+            <div class="card-body">
+                <h3>titolo</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam quis nobis adipisci nisi dolores
+                    sapiente
+                    Accusantium alias soluta dolorum
+                    esse!</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="image-wrapper">
+                <img src="https://plus.unsplash.com/premium_photo-1668472274328-cd239ae3586f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                    alt="" width="100%" height="150px" style="object-fit: cover;">
+                <span class="badge">HOT SALE!</span>
+            </div>
+            <div class="card-body">
+                <h3>titolo</h3>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam quis nobis adipisci nisi dolores
+                    sapiente
+                    eaque quaerat perspiciatis hic autem eum doloremque nemo, at enim. Accusantium alias soluta dolorum
+                    esse!</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

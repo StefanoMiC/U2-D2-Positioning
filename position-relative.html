@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* position RELATIVE ci serve per muovere un elemento relativamente alla sua posizione ORIGINALE
+        es. aiuta nell'allineare di qualche pixel un'icona rispetto ad un testo, o fare piccoli aggiustamenti
+
+        - riserverà lo spazio in cui era 
+        - si lascia dietro uno spazio vuoto che gli altri elementi della pagina rispetteranno */
+        .container {
+            max-width: 900px;
+            margin-inline: auto;
+            border: 1px solid black;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background-color: coral;
+            display: inline-block;
+        }
+
+        .box:nth-of-type(2) {
+            background-color: aquamarine;
+        }
+
+        .box:nth-of-type(3) {
+            background-color: palevioletred;
+        }
+
+        .position-relative {
+
+            position: relative;
+            /* una volta settato il position !== da "static" potremo utilizzare coordinate:*/
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <span>sono il genitore</span>
+
+        <div class="box">sono il figlio</div>
+        <div class="box position-relative">sono il figlio2</div>
+        <div class="box">sono il figlio3</div>
+    </div>
+
+
+</body>
+
+</html>

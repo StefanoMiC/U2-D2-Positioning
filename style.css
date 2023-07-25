@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+}
+
+.container {
+  background-color: teal;
+  display: flow-root;
+}
+
+.container-legacy {
+  background-color: plum;
+}
+
+.container-legacy::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+img {
+  float: left;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: coral;
+}
+
+.section-footer {
+  clear: left;
+}
+
+.clear-fix {
+  clear: both;
+}
+
+.block-1,
+.block-2,
+.block-3,
+.block-4 {
+  min-height: 100px;
+  background-color: aquamarine;
+  border: 1px solid black;
+  margin-block: 1rem;
+}
+
+.block-3,
+.block-4 {
+  display: inline-block;
+  width: 100%;
+}

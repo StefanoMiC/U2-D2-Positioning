@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        lo Z-INDEX ci dà la possibilità di cambiare l'ordine dei livelli di elementi posizionati (diversi da position static) sull'asse Z 
+        un ordinamento implicito avviene già in base alla posizione degli elementi nell'html, più in fondo si trova un elemento più alto è il valore z-index implicito.
+        Ma questo comportamento lo possiamo cambiare usando la proprietà z-index e cambiare completamente l'ordinamento di questi elementi sui loro rispettivi livelli.
+        */
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            margin-inline: auto;
+            border: 1px solid black;
+            min-height: 400px;
+            margin-top: 6rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+
+
+        /* nota come rispetto al posizionamento degli elementi html l'ordine reale nella versione renderizzata sarà quello che stabiliamo noi attraverso la proprietà z-index */
+        .green {
+            background-color: palegreen;
+            z-index: 2;
+            top: -40px;
+            left: -40px;
+        }
+
+        .violet {
+            background-color: palevioletred;
+            z-index: 3;
+            left: 40px;
+            top: 40px;
+        }
+
+        .aqua {
+            background-color: aqua;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="box green"></div>
+        <div class="box violet"></div>
+        <div class="box aqua"></div>
+    </div>
+</body>
+
+</html>
